@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<project name="webservices" default="default" basedir="./../">
+	<description>Build script for Hibernate</description>
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="lib.dir" value="${basedir}/WebContent/WEB-INF/lib" />
+	<property name="build.dir" value="${basedir}/build" />
+	<property name="web.dir" value="${basedir}/WebContent" />
+	<property name="classes.dir" value="${basedir}/WebContent/WEB-INF/classes" />
+ 
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+	</path>
+
+	<target name="default" depends="deploy"></target>
+
+	<target name="compile">
+		<mkdir dir="${classes.dir}" />
+		<javac classpathref="project.classpath" srcdir="${src.dir}"
+			destdir="${classes.dir}" fork="true" memoryInitialSize="256m" memoryMaximumSize="512m" debug="on" includeantruntime="false">
+		</javac>
+	</target>
+
+	<target name="deploy" depends="compile">
+		<copy todir="${classes.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*.xml" />
+				<include name="*.properties" />
+				<include name="*.keystore" />
+			</fileset>
+		</copy>
+	</target>
+</project>

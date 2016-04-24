@@ -1,0 +1,18 @@
+Always: 
+Run the HelloWorldPublisher.java
+
+Hit to check the wsdl: http://localhost:9999/ws/hello?wsdl 
+
+(OR)
+Run the HelloWorldClient.java
+
+(OR)
+Alternative, you can use “wsimport” tool to parse the published wsdl file, and generate necessary client files (stub) to access the published web service.
+
+Where is wsimport?
+This wsimport tool is bundle with the JDK, you can find it at “JDK_PATH/bin” folder.
+Issue “wsimport” command.
+
+wsimport -keep http://localhost:9999/ws/hello?wsdl
+
+It will generate stubs in jdk bin folder itself. Copied those files in to com.soap.wsimport
